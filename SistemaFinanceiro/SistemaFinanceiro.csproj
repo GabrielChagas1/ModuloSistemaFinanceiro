@@ -185,10 +185,6 @@
       <Project>{b2486bdf-7085-4ab6-85ad-b3ee4bfcfc3d}</Project>
       <Name>Model.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model.DAO\Model.DAO.csproj">
-      <Project>{89714d0b-fb9a-42d6-b9ce-768aca26cbf0}</Project>
-      <Name>Model.DAO</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model.Entity\Model.Entity.csproj">
       <Project>{99628758-9411-4f78-85aa-87bb21c8899c}</Project>
       <Name>Model.Entity</Name>
