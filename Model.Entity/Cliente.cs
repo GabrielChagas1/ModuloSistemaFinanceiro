@@ -24,6 +24,8 @@ namespace Model.Entity
         [Required(ErrorMessage = "Campo Obrigatório")]
         public string Telefone { get => Telefone; set => Telefone = value; }
 
+        public int Estado { get => Estado; set => Estado = value; }
+
         public Cliente(){}
 
         public Cliente(long idCliente)
