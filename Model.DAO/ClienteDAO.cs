@@ -17,7 +17,7 @@ namespace Model.DAO
             objConexaoDB = ConexaoDB.saberEstado();
         }
 
-        public void Create(Cliente objCliente)
+        public void CreateSql(Cliente objCliente)
         {
 
             string Create = $"INSERT INTO cliente(nome, endereco, telefone, cpf ) VALUES ({objCliente.Nome}, {objCliente.Endereco}, {objCliente.Telefone}, {objCliente.CPF})";
@@ -38,9 +38,45 @@ namespace Model.DAO
             }
         }
 
-        public void Delete(Cliente obj)
+        public void Create(Cliente objCliente)
         {
-            throw new NotImplementedException();
+
+            string Create = $"sp_cliente_adc {objCliente.Nome}, {objCliente.Endereco}, {objCliente.Telefone}, {objCliente.CPF}";
+            try
+            {
+                Comando = new SqlCommand(Create, objConexaoDB.GetConnection());
+                objConexaoDB.GetConnection().Open();
+                Comando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+                objCliente.Estado = 1;
+            }
+            finally
+            {
+                objConexaoDB.CloseDB();
+            }
+        }
+
+        public void Delete(Cliente objCliente)
+        {
+            string Delete = $"DELETE FROM cliente WHERE idCliente = {objCliente.IdCliente}";
+            try
+            {
+                Comando = new SqlCommand(Delete, objConexaoDB.GetConnection());
+                objConexaoDB.GetConnection().Open();
+                Comando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+                objCliente.Estado = 1;
+            }
+            finally
+            {
+                objConexaoDB.CloseDB();
+            }
         }
 
         public void Find(Cliente obj)
