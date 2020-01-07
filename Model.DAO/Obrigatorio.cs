@@ -13,7 +13,7 @@ namespace Model.DAO
         //método para atualizar
         void Update(Classe obj);
         //método para recuperar um registro
-        void Find(Classe obj);
+        bool Find(Classe obj);
         //método para recuperar todos os registros
         List<Classe> FindAll();
     }

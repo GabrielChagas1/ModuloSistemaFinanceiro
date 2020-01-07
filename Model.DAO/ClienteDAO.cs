@@ -79,14 +79,72 @@ namespace Model.DAO
             }
         }
 
-        public void Find(Cliente obj)
+        public bool Find(Cliente objCliente)
         {
-            throw new NotImplementedException();
+            bool IsRecord;
+            string Find = $"SELECT * FROM cliente WHERE idCliente = {objCliente.IdCliente}";
+            try
+            {
+                Comando = new SqlCommand(Find, objConexaoDB.GetConnection());
+                objConexaoDB.GetConnection().Open();
+                SqlDataReader reader = Comando.ExecuteReader();
+                IsRecord = reader.Read();
+                if (IsRecord)
+                {
+                    objCliente.Nome = reader[1].ToString();
+                    objCliente.Endereco = reader[2].ToString();
+                    objCliente.Telefone = reader[3].ToString();
+                    objCliente.CPF = reader[4].ToString();
+                    objCliente.Estado = 99;
+                }
+                else
+                {
+                    objCliente.Estado = 1;
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            finally
+            {
+                objConexaoDB.CloseDB();
+            }
+            return IsRecord;
         }
 
         public List<Cliente> FindAll()
         {
-            throw new NotImplementedException();
+            List<Cliente> listaCliente = new List<Cliente>();
+            string FindAll = "SELECT * FROM cliente ORDER BY nome ASC";
+            try
+            {
+                Comando = new SqlCommand(FindAll, objConexaoDB.GetConnection());
+                objConexaoDB.GetConnection().Open();
+                SqlDataReader reader = Comando.ExecuteReader();
+                while (reader.Read())
+                {
+                    Cliente objCliente = new Cliente();
+                    objCliente.IdCliente = Convert.ToInt64(reader[0].ToString());
+                    objCliente.Nome = reader[1].ToString();
+                    objCliente.Endereco = reader[2].ToString();
+                    objCliente.Telefone = reader[3].ToString();
+                    objCliente.CPF = reader[4].ToString();
+                    listaCliente.Add(objCliente);
+                }
+                
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            finally
+            {
+                objConexaoDB.CloseDB();
+            }
+            return listaCliente;
         }
 
         public void Update(Cliente obj)
