@@ -23,8 +23,8 @@ namespace Model.DAO
             string Create = $"INSERT INTO cliente(nome, endereco, telefone, cpf ) VALUES ({objCliente.Nome}, {objCliente.Endereco}, {objCliente.Telefone}, {objCliente.CPF})";
             try
             {
-                Comando = new SqlCommand(Create, objConexaoDB.GetConnectionnection());
-                objConexaoDB.GetConnectionnection().Open();
+                Comando = new SqlCommand(Create, objConexaoDB.GetConnection());
+                objConexaoDB.GetConnection().Open();
                 Comando.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -44,8 +44,8 @@ namespace Model.DAO
             string Create = $"sp_cliente_adc {objCliente.Nome}, {objCliente.Endereco}, {objCliente.Telefone}, {objCliente.CPF}";
             try
             {
-                Comando = new SqlCommand(Create, objConexaoDB.GetConnectionnection());
-                objConexaoDB.GetConnectionnection().Open();
+                Comando = new SqlCommand(Create, objConexaoDB.GetConnection());
+                objConexaoDB.GetConnection().Open();
                 Comando.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -64,8 +64,8 @@ namespace Model.DAO
             string Delete = $"DELETE FROM cliente WHERE idCliente = {objCliente.IdCliente}";
             try
             {
-                Comando = new SqlCommand(Delete, objConexaoDB.GetConnectionnection());
-                objConexaoDB.GetConnectionnection().Open();
+                Comando = new SqlCommand(Delete, objConexaoDB.GetConnection());
+                objConexaoDB.GetConnection().Open();
                 Comando.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -85,8 +85,8 @@ namespace Model.DAO
             string Find = $"SELECT * FROM cliente WHERE idCliente = {objCliente.IdCliente}";
             try
             {
-                Comando = new SqlCommand(Find, objConexaoDB.GetConnectionnection());
-                objConexaoDB.GetConnectionnection().Open();
+                Comando = new SqlCommand(Find, objConexaoDB.GetConnection());
+                objConexaoDB.GetConnection().Open();
                 SqlDataReader reader = Comando.ExecuteReader();
                 IsRecord = reader.Read();
                 if (IsRecord)
@@ -120,8 +120,8 @@ namespace Model.DAO
             string FindAll = "SELECT * FROM cliente ORDER BY nome ASC";
             try
             {
-                Comando = new SqlCommand(FindAll, objConexaoDB.GetConnectionnection());
-                objConexaoDB.GetConnectionnection().Open();
+                Comando = new SqlCommand(FindAll, objConexaoDB.GetConnection());
+                objConexaoDB.GetConnection().Open();
                 SqlDataReader reader = Comando.ExecuteReader();
                 while (reader.Read())
                 {
@@ -152,8 +152,8 @@ namespace Model.DAO
             string Update = $"UPDATE cliente SET nome = {objCliente.Nome}, endereco = {objCliente.Endereco}, telefone = {objCliente.Telefone}, cpf = {objCliente.CPF}";
             try
             {
-                Comando = new SqlCommand(Update, objConexaoDB.GetConnectionnection());
-                objConexaoDB.GetConnectionnection().Open();
+                Comando = new SqlCommand(Update, objConexaoDB.GetConnection());
+                objConexaoDB.GetConnection().Open();
                 Comando.ExecuteNonQuery();
             }
             catch (Exception e)
