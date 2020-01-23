@@ -168,7 +168,7 @@ namespace Model.DAO
         }
         //OUTRAS IMPLEMENTAÇÕES
 
-        public bool findClientePorcpf(Cliente objCliente)
+        public bool FindClientePorcpf(Cliente objCliente)
         {
             bool temRegistros;
             string find = "select*from cliente where cpf='" + objCliente.CPF + "'";
@@ -206,7 +206,7 @@ namespace Model.DAO
             return temRegistros;
         }
 
-        public List<Cliente> findAllCliente(Cliente objCLiente)
+        public List<Cliente> FindAllCliente(Cliente objCLiente)
         {
             List<Cliente> listaClientes = new List<Cliente>();
             string findAll = "select* from cliente where nome like '%" + objCLiente.Nome + "%' or cpf like '%" + objCLiente.CPF + "%' or idCliente like '%" + objCLiente.IdCliente + "%' ";

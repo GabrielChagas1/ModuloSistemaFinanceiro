@@ -46,12 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClienteBusiness.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model.DAO\Model.DAO.csproj">
+      <Project>{57144CCD-6907-44CF-93AE-F775C24A879C}</Project>
+      <Name>Model.DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model.Entity\Model.Entity.csproj">
+      <Project>{99628758-9411-4F78-85AA-87BB21C8899C}</Project>
+      <Name>Model.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
